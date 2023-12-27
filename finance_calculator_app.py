@@ -29,15 +29,26 @@ def loan_payment():
     try:
         present_value = float(input("Enter present value: "))
         rate_per_period = float(input("Enter the rate per period (as a decimal): "))
+        if rate_per_period >= 1:
+            rate_per_period = rate_per_period/100
         number_of_periods = float(input("Enter the number of periods: "))
     except ValueError:
         return 'Incorrect value given!'
     result = (rate_per_period * present_value) / (1 - ((1 + rate_per_period)**(-number_of_periods)))
-    return f"Total loan payment is {result}"
+    return f"Total loan payment is {result:.2f}"
 
 
 def future_value_of_savings():
-    pass  # todo
+    try:
+        present_value = float(input("Enter present value: "))
+        interest_rate_annual = float(input("Enter the annual interest rate (as a decimal): "))
+        if interest_rate_annual>= 1:
+            interest_rate_annual = interest_rate_annual / 100
+        years = float(input("Enter the number of yeats: "))
+    except ValueError:
+        return 'Incorrect value given!'
+    result = present_value * (1 + (interest_rate_annual * years))
+    return  f"Future value of savings is {result:.2f}"
 
 
 def main_menu():
